@@ -14,12 +14,12 @@ interface IUserReponse {
 class AppApi {
     
     async registerUser(username: string) {
-        const response = await axiosInstance.post<IUserReponse>('/users', {username});
+        const response = await axiosInstance.post<IUserReponse>('/users/', {username});
         this.setUserData(response.data);
     }
 
     async loginUser(username: string) {
-        const response = await axiosInstance.get<IUserReponse>('/users' + username);
+        const response = await axiosInstance.get<IUserReponse>('/users/' + username);
         this.setUserData(response.data);
     }
 
