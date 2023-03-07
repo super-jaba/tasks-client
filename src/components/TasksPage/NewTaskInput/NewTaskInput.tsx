@@ -1,13 +1,17 @@
-import { useState } from "react"
+import { FC, useState } from "react"
 
-import ApiService from "../../../services/ApiService";
+import ApiService, { ITask } from "../../../services/ApiService";
 import { UserIdStorage } from "../../../services/LocalStorageService";
 import Button from "../../ui/Button/Button";
 import InputText from "../../ui/InputText/InputText"
 
 import s from "./NewTaskInput.module.css";
 
-const NewTaskInput = () => {
+interface INewTaskInput {
+  addTask: (task: ITask) => void; 
+}
+
+const NewTaskInput: FC<INewTaskInput> = (props) => {
   const [title, setTitle] = useState('');
 
   const taskIsValid = (): boolean => {
@@ -18,15 +22,16 @@ const NewTaskInput = () => {
     setTitle('');
   }
 
-  const createNewTask = () => {
+  const createNewTask = async () => {
     const taskOwner = UserIdStorage.get();
     if (!(taskIsValid() && taskOwner)) {
       return;
     }
-    ApiService.createTask(title, taskOwner);
+    const task = await ApiService.createTask(title, taskOwner);
 
     clearInput();
-    // TODO: Add task to the list
+    
+    props.addTask(task);
   }
 
   return (

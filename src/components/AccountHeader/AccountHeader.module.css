@@ -1,0 +1,12 @@
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    padding: 20px;
+    border-bottom: 1px solid gray;
+}
+
+.username {
+    
+}
