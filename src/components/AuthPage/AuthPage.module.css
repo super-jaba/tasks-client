@@ -1,0 +1,23 @@
+.box {
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form {
+    width: 400px;
+    padding: 26px;
+    box-shadow: 6px 3px 11px -1px rgba(0,0,0,0.27);
+}
+
+.title {
+    text-align: center;
+}
+
+.buttonsRow {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
